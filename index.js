@@ -36,16 +36,13 @@ app.post("/add_data", (req, res) => {
     img: "http://localhost:4001/images/1.jpeg"
   })
   write_file("data.json", data)
-  res.render("index", {data})
+  res.redirect("http://localhost:4001/get_data")
 })
 
 app.post("/update/:id", (req, res) => {
   const {title, desc, old_price, new_price} = req.body
   const {id} = req.params
   const data = read_file("data.json")
-
-  console.log(id);
-  
 
   const product = data.find((item) => item.id === id)
 
@@ -64,7 +61,28 @@ app.post("/update/:id", (req, res) => {
     }
   })
   write_file("data.json", data)
-  res.render("details", {product})
+  res.redirect("http://localhost:4001/get_data")
+})
+
+app.post("/delete/:id", (req, res) => {
+  const {id} = req.params
+  const data = read_file("data.json")
+
+  const product = data.find((item) => item.id === id)
+
+  if(!product) {
+   return res.json({
+      message: "Product not found"
+    })
+  }
+
+  data.forEach((item, idx) => {
+    if(item.id === id) {
+      data.splice(idx, 1)
+    }
+  })
+  write_file("data.json", data)
+  res.redirect("http://localhost:4001/get_data")
 })
 
 app.listen(PORT, () => {
