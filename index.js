@@ -39,6 +39,34 @@ app.post("/add_data", (req, res) => {
   res.render("index", {data})
 })
 
+app.post("/update/:id", (req, res) => {
+  const {title, desc, old_price, new_price} = req.body
+  const {id} = req.params
+  const data = read_file("data.json")
+
+  console.log(id);
+  
+
+  const product = data.find((item) => item.id === id)
+
+  if(!product) {
+   return res.json({
+      message: "Product not found"
+    })
+  }
+
+  data.forEach((item) => {
+    if(item.id === id) {
+      item.title = title ? title : item.title
+      item.desc = desc ? desc : item.desc
+      item.old_price = old_price ? old_price : item.old_price
+      item.new_price = new_price ? new_price : item.new_price
+    }
+  })
+  write_file("data.json", data)
+  res.render("details", {product})
+})
+
 app.listen(PORT, () => {
   console.log("server is running " + PORT);
 })
