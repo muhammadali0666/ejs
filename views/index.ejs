@@ -67,7 +67,7 @@
     </button>
   </div>
   <!-- carousel  -->
-     <!-- Modal -->
+  <!-- Modal -->
   <!-- Button trigger modal -->
   <div class="container mt-5">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDataModal">
@@ -84,7 +84,8 @@
             <form action="/add_data" method="post">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">title</label>
-                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="title" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
               </div>
               <div class="mb-3">
@@ -100,7 +101,7 @@
                 <input type="text" name="new_price" class="form-control" id="exampleInputPassword1">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
-              
+
             </form>
           </div>
           <div class="modal-footer">
@@ -112,29 +113,37 @@
   </div>
   <!-- modal  -->
   <!-- card  -->
-   <div class="cards">
+  <div class="cards">
     <div class="container">
       <div class="card-inner pt-5 pb-5">
         <h2 class="card-title mb-4">
           Products
         </h2>
         <div class="card-list d-flex justify-content-evenly flex-wrap gap-4 list-none">
-          <% data.forEach((item) => { %>
+          <% data.forEach((item)=> { %>
             <div class="card" style="width: 18rem;">
               <img src=<%=item.img %> class="card-img-top" alt="...">
               <div class="card-body">
-                <h4 class="card-title"><%= item.title %></h4>
-                <p class="card-text"><%= item.desc %></p>
-                <del class="card-text mb-0 text-danger"><%= item.old_price %>$</del>
-                <p class="card-text fw-bold"><%= item.new_price %>$</p>
+                <h4 class="card-title">
+                  <%= item.title %>
+                </h4>
+                <p class="card-text">
+                  <%= item.desc %>
+                </p>
+                <del class="card-text mb-0 text-danger">
+                  <%= item.old_price %>$
+                </del>
+                <p class="card-text fw-bold">
+                  <%= item.new_price %>$
+                </p>
                 <a href="/single/<%= item.id %>" class="btn btn-primary">More info</a>
               </div>
             </div>
-         <% })%>
+            <% })%>
         </div>
       </div>
     </div>
-   </div>
+  </div>
   <!-- card  -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

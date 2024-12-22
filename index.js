@@ -2,7 +2,6 @@ const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 const {read_file, write_file} = require("./api/api")
-const path = require("path")
 const bodyParser = require('body-parser');
 const {v4} = require("uuid")
 
